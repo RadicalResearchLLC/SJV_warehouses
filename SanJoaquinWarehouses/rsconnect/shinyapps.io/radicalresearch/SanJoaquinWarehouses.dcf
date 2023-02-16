@@ -1,0 +1,13 @@
+name: SanJoaquinWarehouses
+title: SanJoaquinWarehouses
+username:
+account: radicalresearch
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 8220289
+bundleId: 6854704
+url: https://radicalresearch.shinyapps.io/SanJoaquinWarehouses/
+when: 1676568893.43728
+lastSyncTime: 1676568893.43729
+asMultiple: FALSE
+asStatic: FALSE
