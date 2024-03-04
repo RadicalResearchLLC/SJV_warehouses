@@ -4,7 +4,7 @@
 ##Last modified November 2023
 ##This script acquires and tidy parcel data for the app
 
-rm(list =ls()) # clear environment
+#rm(list =ls()) # clear environment
 '%ni%' <- Negate('%in%') ## not in operator
 gc()
 ##Libraries used in data acquisition
@@ -384,10 +384,28 @@ rm(ls = CentralValleyPlanned, cities1, whZ, zones, zoning_types_stsls, uninc_Ind
    tracy_parcels, CEQA_WH, CEQA_WH2, plannedZones_stsls)
 rm(ls = stockton_parcels, stockton_zones)
 
+central_centroid <- st_centroid(centralWH2) |> 
+  st_intersection(cities2) |> 
+  st_set_geometry(value = NULL) |> 
+  select(-Zone_Descr)
+
+centralWH_final <- centralWH2 |> 
+  left_join(central_centroid) |> 
+  mutate(jurisdiction = ifelse(is.na(Zone_Label), 'unincorporated',
+                               Zone_Label)) |> 
+  select(-Zone_Label)
+
+rm(ls = central_centroid, centralWH2, centralWH, centralWH_raw)
+
 gc()
 setwd(app_dir)
 save.image('.RData')
 setwd(wd)
+##export directory
+unlink('centralWH2.geojson')
+sf::st_write(centralWH_final, dsn = 'centralWH2.geojson')
+setwd('C:/Dev/sjv_data/SJV_warehouses')
+unlink('WHcentral.shp')
+sf::st_write(centralWH_final, dsn = 'WHcentral.shp')
 
-
-
+setwd(wd)

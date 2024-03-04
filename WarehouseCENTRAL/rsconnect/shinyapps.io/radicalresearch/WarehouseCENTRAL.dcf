@@ -1,0 +1,13 @@
+name: WarehouseCENTRAL
+title: WarehouseCENTRAL
+username: radicalresearch
+account: radicalresearch
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 11396645
+bundleId: 8328010
+url: https://radicalresearch.shinyapps.io/WarehouseCENTRAL/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: README.html|www/RNOW.jpg
